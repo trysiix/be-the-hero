@@ -1,6 +1,5 @@
 import React from 'react';
 import './style.css' ;
-import heroesImg from '../../assets/heroes.png';
 import logoImg from '../../assets/logo.svg';
 import { FiLogIn } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
@@ -9,7 +8,7 @@ export default function Logon() {
     return (
         <div className="logon-container">
             <section className="form">
-                <img src= { logoImg } alt="Be The Heroe" />
+                <img className="hero-logo" src= { logoImg } alt="Be The Heroe"/>
 
                 <form >
                     <h1>Faca seu logon</h1>
@@ -25,7 +24,6 @@ export default function Logon() {
 
                 </form>
             </section>
-            <img src= { heroesImg } alt="Heroes"/>
         </div>
     );
 }

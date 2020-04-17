@@ -6,20 +6,25 @@
 
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+}
+
+.hero-logo {
+    margin-left: 30px;
 }
 
 .logon-container section.form {
     width: 100%;
     max-width: 350px;
-    margin-right: 30px;
 }
 
 .logon-container section.form form {
-    margin-top: 100px;
+    margin-top: 50px;
 }
 
 .logon-container section.form form h1 {
     font-size: 32px;
+    color: #333;
     margin-bottom: 30px;
+    text-align: center;
 }
