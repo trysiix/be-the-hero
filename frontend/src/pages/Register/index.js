@@ -1,9 +1,14 @@
 import React , { useState } from 'react';
+import api from '../../services/api';
+import { Link, useHistory } from 'react-router-dom';
+
+/******************* Stylization **********************/ 
+
 import './styles.css';
 import logoImg from '../../assets/logo.svg';
-import { Link } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
-import api from '../../services/api';
+
+/******************************************************/
 
 export default function Register() {
     const [name, setName] = useState('');
@@ -12,8 +17,10 @@ export default function Register() {
     const [city, setCity] = useState('');
     const [uf, setUf] = useState('');
 
-   async function handleRegister(client) {
-        client.preventDefault();
+    const history = useHistory();
+
+   async function handleRegister(submitData) {
+        submitData.preventDefault();
         const data = {
             name,
             email,
@@ -21,10 +28,12 @@ export default function Register() {
             city,
             uf
         };
-        console.log(data)
         try {
         const response = await api.post('ongs', data);
-        alert(`Seu ID de acesso: ${response.data.id}`)
+
+        alert(`Seu ID de acesso: ${response.data.id}`);
+
+        history.push('/');
         } catch(error) {
         alert('Erro no cadastro, tente novamente');
         }
@@ -48,24 +57,24 @@ export default function Register() {
                 <form onSubmit={handleRegister}>
                     <input placeholder="Nome da ONG"
                     value={name}
-                    onChange={client => setName(client.target.value)} />
+                    onChange={submitData => setName(submitData.target.value)} />
 
                     <input type="email" placeholder="E-mail"                     value={name}
                     value={email}
-                    onChange={client => setEmail(client.target.value)} />
+                    onChange={submitData => setEmail(submitData.target.value)} />
 
                     <input placeholder="Telefone" 
                     value={phone}
-                    onChange={client => setPhone(client.target.value)} />
+                    onChange={submitData => setPhone(submitData.target.value)} />
 
                     <div className="input-group">
                         <input placeholder="Cidade" 
                         value={city}
-                        onChange={client => setCity(client.target.value)} />
+                        onChange={submitData => setCity(submitData.target.value)} />
 
                         <input placeholder="UF" style={{ width: 80 }} 
                         value={uf}
-                        onChange={client => setUf(client.target.value)} />
+                        onChange={submitData => setUf(submitData.target.value)} />
                     </div>
 
                     <button className="button" type="submit">Cadastrar</button>
